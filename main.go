@@ -1,3 +1,6 @@
+// Licensed under the  MIT License (MIT)
+// Copyright (c) 2016 Peter Waller <p@pwaller.net>
+
 package main
 
 import (
