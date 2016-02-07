@@ -8,19 +8,30 @@ This program shows where time and bytes are spent when building a docker context
 It is based directly on the same logic that Docker itself uses to build the
 context.
 
-Getting started:
+## Getting started (binaries):
+
+Binaries are available on the
+[releases page](https://github.com/pwaller/docker-show-context/releases/tag/v1.0).
+Just grab the binary and put it in your path, then invoke it as
+`docker-show-context`.
+
+## Getting started (building from source):
 
 ```
 $ go get -v -u github.com/pwaller/docker-show-context
-$ cd ~/path/to/docker/context
-$ docker-show-context
+$ # Note: above command might take a minute or two because docker/docker is
+$ # vendored and big.
 ```
+
+# What the output looks like
 
 The output looks something like this. It's easy to see now that I accidentally
 included some large binary content (`*.deb` and `*.pdf` files in particular),
 so I can now go and add those to my `.dockerignore` or delete them.
 
 ```
+$ cd ~/path/to/project/using/docker
+$ docker-show-context
 2016/02/07 13:30:06 Building context...
 
 (note: totals do not take into account dockerignore)
