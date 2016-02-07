@@ -102,7 +102,8 @@ is for now. Pull requests welcome.
   one tar entry. It might not be precise.
 
 * "Total content" shows the uncompressed bytes inside files inside the tar.
-  The total tar file is this number plus the tar overhead.
+  The total amount sent to the docker daemon is this amount plus the tar
+  overhead.
 
 * At this moment, only running with the build context root as the current
   working directory works, with a dockerfile named `Dockerfile`. Pull requests
