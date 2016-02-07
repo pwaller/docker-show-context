@@ -1,3 +1,7 @@
+# Hacker news discussion
+
+[Link to HN discussion](https://news.ycombinator.com/item?id=11052942)
+
 # `docker-show-context`
 
 Ever wonder why docker pauses when you do `docker build`, and what you can do
