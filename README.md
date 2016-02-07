@@ -106,8 +106,9 @@ is for now. Pull requests welcome.
   overhead.
 
 * At this moment, only running with the build context root as the current
-  working directory works, with a dockerfile named `Dockerfile`. Pull requests
-  welcome to fix this, so long as the existing default behaviour is preserved.
+  working directory is supported, with a dockerfile named `Dockerfile`.
+  Pull requests welcome to add parameters, so long as the existing default
+  behaviour is preserved.
 
 # How can I use this to make building faster?
 
