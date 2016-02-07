@@ -19,8 +19,8 @@ Just grab the binary and put it in your path, then invoke it as
 
 ```
 $ go get -v -u github.com/pwaller/docker-show-context
-$ # Note: above command might take a minute or two because docker/docker is
-$ # vendored and big.
+$ # Note: above command might take a minute or two
+$ # because docker/docker is vendored and big.
 ```
 
 # What the output looks like
