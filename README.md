@@ -13,7 +13,7 @@ context.
 Binaries are available on the
 [releases page](https://github.com/pwaller/docker-show-context/releases/tag/v1.0).
 Just grab the binary and put it in your path, then invoke it as
-`docker-show-context`.
+`docker-show-context`. Use at your own risk.
 
 ## Getting started (building from source):
 
