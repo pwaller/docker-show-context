@@ -17,10 +17,16 @@ Just grab the binary and put it in your path, then invoke it as
 
 ## Getting started (building from source):
 
+This requires vgo. At some point vgo will become a part of Go, but until then you need to obtain the vgo tool:
+
 ```
-$ go get -v -u github.com/pwaller/docker-show-context
-$ # Note: above command might take a minute or two
-$ # because docker/docker is vendored and big.
+go get golang.org/x/vgo
+```
+
+Then run:
+
+```
+vgo get -v github.com/pwaller/docker-show-context
 ```
 
 # What the output looks like
