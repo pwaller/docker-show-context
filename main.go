@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docker/docker/builder/dockerignore"
-	"github.com/docker/docker/pkg/archive"
-	"github.com/docker/docker/pkg/fileutils"
+	"github.com/moby/moby/builder/dockerignore"
+	"github.com/moby/moby/pkg/archive"
+	"github.com/moby/moby/pkg/fileutils"
 )
 
 // getArchive returns the tarfile io.ReadCloser. It is a direct copy of the
