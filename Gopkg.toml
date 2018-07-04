@@ -1,0 +1,12 @@
+[[constraint]]
+  name = "github.com/moby/moby"
+  revision = "v17.05.0-ce"
+
+[[override]]
+  name = "github.com/docker/docker"
+  revision = "v17.05.0-ce"
+
+[prune]
+  non-go = true
+  go-tests = true
+  unused-packages = true
