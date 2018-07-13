@@ -26,7 +26,9 @@ go get golang.org/x/vgo
 Then run:
 
 ```
-vgo get -v github.com/pwaller/docker-show-context
+git clone https://github.com/pwaller/docker-show-context
+cd docker-show-context
+vgo install -v
 ```
 
 # What the output looks like
