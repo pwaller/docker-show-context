@@ -40,61 +40,38 @@ so I can now go and add those to my `.dockerignore` or delete them.
 ```
 $ cd ~/path/to/project/using/docker
 $ docker-show-context
-2016/02/07 13:30:06 Building context...
+Scanning local directory (in tar / on disk):
+  24 / 1057 (62 / 216 MiB) (0.0s elapsed) .. completed
 
-(note: totals do not take into account dockerignore)
-Creating tar: 4417 / 13949 (165 / 2188 MiB) (5.4s elapsed) .. completed
+Excluded by .dockerignore: 1033 files totalling 153.98 MiB
+
+Final .tar:
+  24 files totalling 61.83 MiB (+ 0.02 MiB tar overhead)
+  Took 0.04 seconds to build
 
 Top 10 directories by time spent:
-  139 ms: vendor/github.com/google/go-github/github
-   97 ms: vendor/golang.org/x/net/ipv4
-   94 ms: vendor/github.com/foo/bar/baz
-   85 ms: http
-   82 ms: vendor/github.com/stripe/stripe-go
-   80 ms: vendor/golang.org/x/net/ipv6
-   61 ms: vendor/golang.org/x/net/html/testdata/webkit
-   51 ms: vendor/github.com/prometheus/procfs
-   51 ms: vendor/github.com/prometheus/client_golang/prometheus
-   50 ms: vendor/github.com/aws/aws-sdk-go/internal/features/smoke/emr
+   40 ms: .
+    1 ms: example
 
 Top 10 directories by storage:
- 100.01 MiB: .
-  13.72 MiB: pkg/format/xlsx/mapping
-   4.75 MiB: vendor/golang.org/x/text/collate
-   2.82 MiB: vendor/golang.org/x/text/display
-   2.33 MiB: http/images
-   1.01 MiB: tests/integration-data
-   0.92 MiB: vendor/github.com/aws/aws-sdk-go/service/ec2
-   0.85 MiB: vendor/golang.org/x/text/encoding/simplifiedchinese
-   0.80 MiB: vendor/golang.org/x/text/encoding/japanese
-   0.79 MiB: vendor/golang.org/x/text/encoding/traditionalchinese
+  61.83 MiB: .
+   0.00 MiB: example
 
 Top 10 directories by file count:
-  102: vendor/github.com/google/go-github/github
-   92: vendor/github.com/foo/bar/baz
-   80: vendor/golang.org/x/net/ipv4
-   78: vendor/golang.org/x/net/ipv6
-   45: vendor/golang.org/x/net/html/testdata/webkit
-   45: http
-   44: vendor/github.com/tealeg/xlsx
-   39: vendor/github.com/stripe/stripe-go
-   37: vendor/golang.org/x/crypto/ssh
-   36: vendor/github.com/prometheus/client_golang/prometheus
+   23: .
+    1: example
 
 Top 10 file extensions by storage:
-  80.99 MiB: .deb
-  29.38 MiB: .go
-  15.43 MiB: .com
-  12.95 MiB: .ttx
-   7.22 MiB: .json
-   5.31 MiB: .pdf
-   3.67 MiB: .py
-   3.21 MiB: .png
-   1.05 MiB: .ttf
-   0.68 MiB: .js
-
-2016/02/07 13:30:12 Total files: 4437 total content: 165.48 MiB (+ 3.07 MiB tar overhead)
-2016/02/07 13:30:12 Took 5.38 seconds to build tar
+  57.10 MiB: 
+   4.71 MiB: .exe
+   0.01 MiB: .pprof
+   0.01 MiB: .md
+   0.01 MiB: .go
+   0.00 MiB: .sum
+   0.00 MiB: .mod
+   0.00 MiB: .sh
+   0.00 MiB: .gitignore
+   0.00 MiB: .dockerignore
 ```
 
 # Notes about the current behaviour
