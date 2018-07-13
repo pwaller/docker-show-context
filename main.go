@@ -71,6 +71,7 @@ func (w *WriteCounter) Write(bs []byte) (int, error) {
 }
 
 func main() {
+	log.SetFlags(0)
 
 	// Take a quick and dirty file count. This should be an over-estimate,
 	// since it doesn't currently attempt to re-implement or reuse the
@@ -82,8 +83,6 @@ func main() {
 		totalStorage += info.Size()
 		return nil
 	})
-
-	log.Printf("Building context...")
 
 	// TODO(pwaller): Make these parameters?
 	r, err := getArchive(".", "Dockerfile")
@@ -115,13 +114,28 @@ func main() {
 	writeCounter := WriteCounter(0)
 	tf := tar.NewReader(io.TeeReader(r, &writeCounter))
 
+	cr := []byte("\r")
+	showUpdate := func(w io.Writer) {
+		os.Stderr.Write(cr) // always to Stderr.
+		fmt.Fprintf(w,
+			"  %v / %v (%.0f / %.0f MiB) "+
+				"(%.1fs elapsed)",
+			currentCount,
+			totalCount,
+			float64(currentStorage)/1024/1024,
+			float64(totalStorage)/1024/1024,
+			time.Since(start).Seconds(),
+		)
+	}
+
 	fmt.Println()
-	fmt.Println("(note: totals do not take into account dockerignore)")
+	fmt.Println("Scanning local directory (in tar / on disk):")
 entries:
 	for {
 		header, err := tf.Next()
 		switch err {
 		case io.EOF:
+			showUpdate(os.Stdout)
 			fmt.Println(" .. completed")
 			fmt.Println()
 			break entries
@@ -151,18 +165,27 @@ entries:
 
 		select {
 		case <-tick:
-			fmt.Printf(
-				"\rCreating tar: %v / %v (%.0f / %.0f MiB) "+
-					"(%.1fs elapsed)",
-				currentCount,
-				totalCount,
-				float64(currentStorage)/1024/1024,
-				float64(totalStorage)/1024/1024,
-				time.Since(start).Seconds(),
-			)
+			showUpdate(os.Stderr)
 		default:
 		}
 	}
+
+	fmt.Printf(
+		"Excluded by .dockerignore: "+
+			"%d files totalling %.2f MiB\n",
+		totalCount-currentCount,
+		float64(totalStorage-currentStorage)/1024/1024)
+	fmt.Println()
+	fmt.Println("Final .tar:")
+	// Epilogue.
+	fmt.Printf(
+		"  %v files totalling %.2f MiB (+ %.2f MiB tar overhead)\n",
+		currentCount,
+		float64(currentStorage)/1024/1024,
+		float64(int64(writeCounter)-currentStorage)/1024/1024,
+	)
+	fmt.Printf("  Took %.2f seconds to build\n", time.Since(start).Seconds())
+	fmt.Println()
 
 	// Produce Top-N.
 	topDirStorage := SortedBySize(dirStorage)
@@ -199,15 +222,6 @@ entries:
 		fmt.Printf("%7.2f MiB: %v\n", float64(entry.Size)/1024/1024, entry.Path)
 	}
 	fmt.Println()
-
-	// Epilogue.
-	log.Printf(
-		"Total files: %v total content: %.2f MiB (+ %.2f MiB tar overhead)",
-		currentCount,
-		float64(currentStorage)/1024/1024,
-		float64(int64(writeCounter)-currentStorage)/1024/1024,
-	)
-	log.Printf("Took %.2f seconds to build tar", time.Since(start).Seconds())
 }
 
 // SortedBySize returns direcotries in m sorted by Size (biggest first).
