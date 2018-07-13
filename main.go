@@ -26,10 +26,7 @@ func getArchive(contextDir, relDockerfile string) (io.ReadCloser, error) {
 	var err error
 
 	// And canonicalize dockerfile name to a platform-independent one
-	relDockerfile, err = archive.CanonicalTarNameForPath(relDockerfile)
-	if err != nil {
-		return nil, fmt.Errorf("cannot canonicalize dockerfile path %s: %v", relDockerfile, err)
-	}
+	relDockerfile = archive.CanonicalTarNameForPath(relDockerfile)
 
 	f, err := os.Open(filepath.Join(contextDir, ".dockerignore"))
 	if err != nil && !os.IsNotExist(err) {
