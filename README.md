@@ -8,6 +8,13 @@ This program shows where time and bytes are spent when building a docker context
 It is based directly on the same logic that Docker itself uses to build the
 context.
 
+## Getting started (docker):
+
+```sh
+docker build -t docker-show-context https://github.com/pwaller/docker-show-context.git
+docker run -v $PWD:/data docker-show-context
+```
+
 ## Getting started (binaries):
 
 Binaries are available on the
