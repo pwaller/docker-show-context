@@ -11,7 +11,8 @@ context.
 ## Getting started (docker):
 
 ```sh
-docker run -v $PWD:/data $(docker build https://github.com/pwaller/docker-show-context.git)
+docker build -t docker-show-context https://github.com/pwaller/docker-show-context.git
+docker run -v $PWD:/data docker-show-context
 ```
 
 ## Getting started (binaries):
