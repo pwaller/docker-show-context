@@ -6,4 +6,6 @@ COPY . .
 
 RUN GO111MODULE=on go install -v
 
-ENTRYPOINT "docker-show-context"
+WORKDIR /data
+
+ENTRYPOINT "/app/docker-show-context"
