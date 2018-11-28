@@ -8,4 +8,4 @@ RUN GO111MODULE=on go install -v
 
 WORKDIR /data
 
-ENTRYPOINT "/app/docker-show-context"
+ENTRYPOINT "docker-show-context"
