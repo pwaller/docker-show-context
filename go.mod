@@ -1,9 +1,11 @@
 module github.com/pwaller/docker-show-context
 
 require (
+	github.com/Microsoft/go-winio v0.4.11 // indirect
 	github.com/containerd/continuity v0.0.0-20181203112020-004b46473808 // indirect
 	github.com/docker/docker v0.0.0-0.20190115220918-5ec31380a5d3
 	github.com/docker/go-units v0.3.3 // indirect
+	github.com/golang/protobuf v1.2.0 // indirect
 	github.com/google/go-cmp v0.2.0 // indirect
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
 	github.com/opencontainers/image-spec v1.0.1 // indirect
