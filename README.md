@@ -12,7 +12,7 @@ context.
 
 ```sh
 docker build -t docker-show-context https://github.com/pwaller/docker-show-context.git
-docker run -v $PWD:/data docker-show-context
+docker run --rm -v $PWD:/data docker-show-context
 ```
 
 ## Getting started (binaries):
