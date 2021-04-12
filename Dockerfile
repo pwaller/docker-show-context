@@ -1,11 +1,11 @@
-FROM golang:1.11
-
+FROM golang:1.11 AS builder
 WORKDIR /app
-
 COPY . .
+ENV GO111MODULE=on
+RUN go build -o docker-show-context .
 
-RUN GO111MODULE=on go install -v
-
+FROM alpine:latest
+COPY --from=builder /app/docker-show-context /usr/local/bin
+RUN apk add --no-cache libc6-compat
 WORKDIR /data
-
-ENTRYPOINT "docker-show-context"
+ENTRYPOINT ["docker-show-context"]
